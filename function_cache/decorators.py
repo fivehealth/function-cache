@@ -8,17 +8,20 @@ from .backends import get_cache_backend
 logger = logging.getLogger(__name__)
 
 
-def function_cache(name='default', keys=None, **kwargs):
+def function_cache(name='default', keys=None, key_prefix=None, **kwargs):
     cache_backend = get_cache_backend(name, keys=keys, **kwargs)
+    _key_prefix = key_prefix
 
     def decorator(decorated_func):
         sig = signature(decorated_func)
         pass_cache_key = '_cache_key' in sig.parameters or any(param.kind == param.VAR_KEYWORD for param in sig.parameters.values())
-        key_prefix = f'{decorated_func.__module__}.{decorated_func.__name__}'
+
+        if _key_prefix is None:
+            cache_key_prefix = f'{decorated_func.__module__}.{decorated_func.__name__}'
 
         @wraps(decorated_func)
         def wrapper(*args, **kwargs):
-            cache_key = f'{key_prefix}-{cache_backend.compute_key(args, kwargs)}'
+            cache_key = f'{cache_key_prefix}-{cache_backend.compute_key(args, kwargs)}'
 
             cache_hit = cache_backend.exists(cache_key)
             logger.debug(f'Cache {"hit" if cache_hit else "miss"} for cache key <{cache_key}>.')
