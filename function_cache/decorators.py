@@ -16,11 +16,11 @@ def function_cache(name='default', keys=None, key_prefix=None, **kwargs):
         sig = signature(decorated_func)
         pass_cache_key = '_cache_key' in sig.parameters or any(param.kind == param.VAR_KEYWORD for param in sig.parameters.values())
 
-        cache_key_prefix = f'{decorated_func.__module__}.{decorated_func.__name__}' if _key_prefix is None else _key_prefix
+        cache_key_prefix = f'{decorated_func.__module__}.{decorated_func.__name__}-' if _key_prefix is None else _key_prefix
 
         @wraps(decorated_func)
         def wrapper(*args, **kwargs):
-            cache_key = f'{cache_key_prefix}-{cache_backend.compute_key(args, kwargs)}'
+            cache_key = f'{cache_key_prefix}{cache_backend.compute_key(args, kwargs)}'
 
             cache_hit = cache_backend.exists(cache_key)
             logger.debug(f'Cache {"hit" if cache_hit else "miss"} for cache key <{cache_key}>.')
