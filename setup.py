@@ -10,6 +10,7 @@ setup(
     packages=['function_cache'],
     description='A Django-based convenience decorator for caching results of functions to various backends.',
     long_description=README,
+    long_description_content_type='text/markdown',
     author='Yanchuan Sim',
     author_email='yc@botmd.io',
     url='https://gitlab.com/fivehealth/function-cache',
