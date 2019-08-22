@@ -9,9 +9,6 @@ before_script:
 
 deploy:
   stage: deploy
-  variables:
-    TWINE_USERNAME: $PRODUCTION_USERNAME
-    TWINE_PASSWORD: $PRODUCTION_PASSWORD
   script:
     - twine upload dist/*
   only:
