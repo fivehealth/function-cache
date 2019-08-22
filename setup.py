@@ -6,7 +6,7 @@ README = open(os.path.join(here, 'README.md')).read()
 
 setup(
     name='function-cache',
-    version='0.1.4',
+    version='0.1.5',
     packages=['function_cache'],
     description='A Django-based convenience decorator for caching results of functions to various backends.',
     long_description=README,
