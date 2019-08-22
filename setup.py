@@ -17,5 +17,10 @@ setup(
     license='Apache License 2.0',
     install_requires=[
         'Django>2.0',
-    ]
+    ],
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'License :: OSI Approved :: Apache Software License',
+        'Framework :: Django',
+    ],
 )
