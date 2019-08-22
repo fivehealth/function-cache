@@ -7,7 +7,7 @@ before_script:
    - pip install twine
    - python setup.py sdist
 
-deploy:
+Upload to PyPI:
   stage: deploy
   script:
     - twine upload dist/*
