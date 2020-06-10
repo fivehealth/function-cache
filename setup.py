@@ -6,7 +6,7 @@ README = open(os.path.join(here, 'README.md')).read()
 
 setup(
     name='function-cache',
-    version='0.1.7',
+    version='0.1.8',
     packages=['function_cache'],
     description='A Django-based convenience decorator for caching results of functions to various backends.',
     long_description=README,
@@ -18,8 +18,11 @@ setup(
     install_requires=[
         'Django>2.0',
     ],
+    python_requires='>=3',
+    keywords='django cache',
     classifiers=[
         'Development Status :: 4 - Beta',
+        'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',
         'Framework :: Django',
     ],
