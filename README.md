@@ -4,6 +4,7 @@
 [![PyPI license](https://img.shields.io/pypi/l/function-cache.svg)](https://pypi.python.org/pypi/function-cache/)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/function-cache.svg)](https://pypi.python.org/pypi/function-cache/)
 [![PyPI status](https://img.shields.io/pypi/status/function-cache.svg)](https://pypi.python.org/pypi/function-cache/)
+[![PyPI download total](https://img.shields.io/pypi/dm/function-cache.svg)](https://pypi.python.org/pypi/function-cache/)
 
 Cache the results of a function on S3 (and more!).
 The `function_cache` decorator enables flexibility in how cache key is generated.
