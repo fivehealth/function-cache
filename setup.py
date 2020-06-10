@@ -11,16 +11,16 @@ setup(
     description='A Django-based convenience decorator for caching results of functions to various backends.',
     long_description=README,
     long_description_content_type='text/markdown',
-    author='Yanchuan Sim',
-    author_email='yc@botmd.io',
-    url='https://gitlab.com/fivehealth/function-cache',
-    license='Apache License 2.0',
+    author='5 Health Inc',
+    author_email='hello@botmd.io',
+    url='https://github.com/fivehealth/function-cache',
+    license='MIT License',
     install_requires=[
         'Django>2.0',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
-        'License :: OSI Approved :: Apache Software License',
+        'License :: OSI Approved :: MIT License',
         'Framework :: Django',
     ],
 )
