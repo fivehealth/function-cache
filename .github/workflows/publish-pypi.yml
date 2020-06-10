@@ -1,32 +1,28 @@
-name: Publish distributions 📦 to PyPI
+name: Upload Python Distribution
 
 on:
-  push:
-    branches:
-    - master
-    paths:
-    - 'setup.py'
-    - 'function_cache/**'
+  release:
+    types: [created]
 
 jobs:
-  build-n-publish:
-    name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
-    runs-on: ubuntu-18.04
+  deploy:
+
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v1
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        python-version: 3.7
-    - name: Install Twine
-      run: pip install twine
-    - name: Build distribution
-      run: python setup.py sdist
-    - namw: Publish distribution
-      env: # Or as an environment variable
-        TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install setuptools wheel twine
+    - name: Build and publish
+      env:
         TWINE_USERNAME: __token__
-      run: twine upload dist/*
-  #end build-n-publish
-#end jobs
+        TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+      run: |
+        python setup.py sdist bdist_wheel
+        twine upload dist/*
