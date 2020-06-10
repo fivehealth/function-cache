@@ -1,0 +1,32 @@
+name: Publish distributions 📦 to PyPI
+
+on:
+  push:
+    branches:
+    - master
+    paths:
+    - 'setup.py'
+    - 'function_cache/**'
+
+jobs:
+  build-n-publish:
+    name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install Twine
+      run: pip install twine
+    - name: Build distribution
+      run: python setup.py sdist
+    - namw: Publish distribution
+      env: # Or as an environment variable
+        TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        TWINE_USERNAME: __token__
+      run: twine upload dist/*
+  #end build-n-publish
+#end jobs
