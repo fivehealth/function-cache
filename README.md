@@ -1,6 +1,7 @@
 # Django Function Cache
 
-[![PyPI version shields.io](https://img.shields.io/pypi/v/function-cache.svg)](https://pypi.python.org/pypi/function-cache/)
+[![PyPI version](https://img.shields.io/pypi/v/function-cache.svg)](https://pypi.python.org/pypi/function-cache/)
+[![PyPI django version](https://img.shields.io/pypi/djversions/function-cache)](https://pypi.python.org/pypi/function-cache/)
 [![PyPI license](https://img.shields.io/pypi/l/function-cache.svg)](https://pypi.python.org/pypi/function-cache/)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/function-cache.svg)](https://pypi.python.org/pypi/function-cache/)
 [![PyPI status](https://img.shields.io/pypi/status/function-cache.svg)](https://pypi.python.org/pypi/function-cache/)
