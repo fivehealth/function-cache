@@ -1,7 +1,6 @@
 __all__ = ['BaseFunctionCacheBackend', 'S3FunctionCacheBackend', 'get_cache_backend']
 from functools import lru_cache
 from hashlib import sha256
-from itertools import chain
 import json
 import logging
 import re
@@ -27,12 +26,12 @@ def get_cache_backend(name='default', keys=None, **kwargs):
     #end try
 
     backend_class = import_string(d['BACKEND'])
-    options = dict((k, v) for k, v in chain(d.get('OPTIONS', {}).items(), kwargs.items()))
+    options = d.get('OPTIONS', {})
 
     if keys is None:
         keys = options.pop('keys', None)
 
-    return backend_class(keys=keys, **options)
+    return backend_class(keys=keys, **options, **kwargs)
 #end def
 
 
