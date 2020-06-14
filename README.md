@@ -12,6 +12,20 @@ The `function_cache` decorator enables flexibility in how cache key is generated
 
 ## Example
 
+In your `settings.py`, you can set up the `FUNCTION_CACHE_BACKENDS` (defaults to [`S3FunctionCacheBackend`](function_cache/backends.py)):
+```python
+# Django Function Cache
+# ---------------------
+FUNCTION_CACHE_BACKENDS = {
+    'default': {
+        'BACKEND': 'function_cache.backends.S3FunctionCacheBackend',
+        'OPTIONS': {},
+    }
+}
+```
+
+In your code, you can simply use the [`function_cache` decorator](function_cache/decorators.py)
+
 ```python
 from django.contrib.staticfiles.storage import staticfiles_storage
 from function_cache.decorators import function_cache
