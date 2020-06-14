@@ -17,7 +17,15 @@ logger = logging.getLogger(__name__)
 
 @lru_cache()
 def get_cache_backend(name='default', keys=None, **kwargs):
-    d = settings.FUNCTION_CACHE_BACKENDS[name]
+    try:
+        d = settings.FUNCTION_CACHE_BACKENDS[name]
+    except AttributeError:
+        if name == 'default':
+            d = dict(BACKEND='function_cache.backends.S3FunctionCacheBackend')
+        else:
+            raise
+    #end try
+
     backend_class = import_string(d['BACKEND'])
     options = dict((k, v) for k, v in chain(d.get('OPTIONS', {}).items(), kwargs.items()))
 
