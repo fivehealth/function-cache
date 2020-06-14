@@ -63,6 +63,18 @@ class BaseFunctionCacheBackend():
             L = list(args) + list(kwargs.values())
         #end if
 
+        # Convert long strings or binary stuff to its sha hash instead
+        for i, elem in enumerate(L):
+            if isinstance(elem, str):
+                N = len(elem)
+                if N > 1024:
+                    L[i] = sha256(elem.encode('utf-8')).hexdigest()
+            elif isinstance(elem, (bytes, bytearray)):
+                N = len(elem)
+                L[i] = sha256(elem).hexdigest()
+            #end if
+        #end for
+
         return sha256(json.dumps(L, ensure_ascii=True).encode('ascii')).hexdigest()
     #end def
 
